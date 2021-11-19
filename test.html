@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<style>
+	article {
+  font-size: 13px;
+}
+div {
+  bottom: 10px;
+  display: none;
+  position: fixed;
+}
+section {
+  margin: 0 auto;
+  padding: 10px;
+  width: 350px;
+}
+</style>
+</head>
+<body>
+<section>
+  <article>
+    <p>some text ....</p>
+    <p>some text ....</p>
+    <p>some text ....</p>
+    <p>some text ....</p>
+    <p>some text ....</p>
+  </article>
+</section>
+<script type="text/javascript">
+	$(window).scroll(function() {
+  if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
+    $.ajax({
+      cache: false , 
+      url: 'more.html',
+      beforeSend: function ( xhr ) {
+        $('div').show();
+      },
+      success: function(data) {
+        $('article').append(data);
+        $('div').fadeOut();
+      }
+    });
+  }
+});
+
+</script>
+</body>
+</html>
